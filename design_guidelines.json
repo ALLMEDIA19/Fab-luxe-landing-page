@@ -1,0 +1,137 @@
+{
+  "identity": {
+    "name": "Fab Luxe by Forbes Global Properties",
+    "persona": "E1 - The Anti-AI Designer",
+    "tone": "Jewel & Luxury",
+    "mission": "Create a digital experience that feels like a private viewing of a masterpiece. Old Money sophistication meets modern technical precision."
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Playfair Display, serif",
+      "weights": ["400", "600", "700"],
+      "usage": "All section titles, hero headlines, and major value propositions.",
+      "letter_spacing": "tracking-tight"
+    },
+    "body": {
+      "font_family": "Manrope, sans-serif",
+      "weights": ["300", "400", "500"],
+      "usage": "Paragraphs, lists, button text, and technical details.",
+      "letter_spacing": "tracking-normal"
+    },
+    "accents": {
+      "font_family": "Playfair Display, serif",
+      "style": "italic",
+      "usage": "Testimonials, 'Quiet Luxury' tagline, and decorative subheads."
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "name": "Deep Emerald",
+        "hex": "#064E3B",
+        "tailwind": "bg-[#064E3B]",
+        "usage": "Primary buttons (hover), active states, footer background."
+      },
+      "secondary": {
+        "name": "Forbes Gold",
+        "hex": "#D4AF37",
+        "tailwind": "text-[#D4AF37] border-[#D4AF37]",
+        "usage": "Borders, icons, thin lines, text highlights."
+      },
+      "background": {
+        "name": "Warm Cream",
+        "hex": "#FDFBF7",
+        "tailwind": "bg-[#FDFBF7]",
+        "usage": "Main page background."
+      },
+      "surface": {
+        "name": "Soft Beige",
+        "hex": "#F5F2EA",
+        "tailwind": "bg-[#F5F2EA]",
+        "usage": "Cards, form backgrounds, secondary sections."
+      },
+      "text": {
+        "primary": "#1A1A1A",
+        "secondary": "#4A4A4A",
+        "light": "#FDFBF7"
+      }
+    },
+    "rules": [
+      "No gradients on dark backgrounds.",
+      "Use 'Forbes Gold' sparingly - only for emphasis.",
+      "Text on Dark Green must be Warm Cream (#FDFBF7), never pure white."
+    ]
+  },
+  "layout_strategy": {
+    "grid_system": "The Bento Grid (Mode A)",
+    "container_width": "max-w-7xl mx-auto px-6 md:px-12",
+    "spacing": {
+      "section_gap": "py-24 md:py-32",
+      "component_gap": "gap-8 md:gap-12"
+    }
+  },
+  "components": {
+    "HeroSection": {
+      "type": "Custom",
+      "structure": "Full-screen parallax image with dark overlay (40%). Centered majestic typography. 'Inquire Now' button with gold border.",
+      "animation": "Slow zoom on background image. Text fade-in stagger."
+    },
+    "LeadFormPopup": {
+      "type": "Shadcn Dialog",
+      "customization": "Remove default radius. Use sharp corners or 2px radius. Gold border on focus. Background: Warm Cream.",
+      "fields": ["Name", "Phone", "Budget", "Preferred Callback Time"],
+      "success_state": "Show elegant success message with checkmark icon, no redirect."
+    },
+    "PropertyHighlights": {
+      "type": "Bento Grid",
+      "items": [
+        {"title": "Forbes Branded", "desc": "India's first Forbes Global Properties project.", "col_span": "col-span-12 md:col-span-8"},
+        {"title": "Sky Lounge", "desc": "75,000 sq.ft of curated luxury.", "col_span": "col-span-12 md:col-span-4"},
+        {"title": "Spacious Living", "desc": "3.5 & 4.5 BHK starting from 2690 sq.ft.", "col_span": "col-span-12 md:col-span-4"},
+        {"title": "Price", "desc": "Starts ₹2.97 Cr.", "col_span": "col-span-12 md:col-span-8"}
+      ]
+    },
+    "StickyCTA": {
+      "type": "Custom",
+      "position": "Bottom right (desktop), Fixed bottom bar (mobile)",
+      "style": "Glassmorphism with Gold border.",
+      "text": "Book Private Viewing"
+    }
+  },
+  "image_urls": {
+    "hero_bg": "https://images.unsplash.com/photo-1745091722150-dc7aaf6eeb21?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "interior_living": "https://images.unsplash.com/photo-1653652445848-ddc5a1c6472c?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "amenity_pool": "https://images.unsplash.com/photo-1758448756167-88dc934c58e4?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "amenity_theatre": "https://images.unsplash.com/photo-1517604931442-71053648eca9?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "exterior_twilight": "https://images.unsplash.com/photo-1676287734314-b7616c3c5e5a?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "content_data": {
+    "project_name": "Fab Luxe by Forbes Global Properties",
+    "location": "Noida Extension (Techzone 7), Greater Noida West",
+    "price": "Starts at ₹2.97 Cr",
+    "configurations": "3.5 BHK & 4.5 BHK",
+    "possession": "March 2028",
+    "usps": [
+      "India's First Forbes Branded Residential Project",
+      "11ft Ceiling Height",
+      "3 Apartments per Floor",
+      "All Corner Apartments",
+      "Dedicated EV Charging",
+      "75,000 sq ft Club Amenities"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install 'lucide-react' for icons.",
+    "Use 'Playfair Display' from Google Fonts via import in index.css.",
+    "Use 'Manrope' from Google Fonts.",
+    "Ensure the Lead Form sends data to POST /api/leads (mock it if backend not ready, but user said backend exists).",
+    "Add 'data-testid' to the submit button: 'lead-form-submit'.",
+    "Ensure mobile responsiveness: Text should not be too small (<16px) or too large (>40px) on mobile."
+  ],
+  "universal_guidelines": [
+    "Do not use gradients on dark colors.",
+    "Use layered shadows.",
+    "Every interaction needs micro-animations.",
+    "Use 'sonner' for toasts."
+  ]
+}
