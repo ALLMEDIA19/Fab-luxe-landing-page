@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap");
+
 body {
     margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
+    font-family: "Manrope", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 code {
@@ -44,6 +44,9 @@ code {
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
+        --deep-emerald: #064e3b;
+        --forbes-gold: #d4af37;
+        --warm-cream: #fdfbf7;
     }
     .dark {
         --background: 0 0% 3.9%;
@@ -79,6 +82,9 @@ code {
     }
     body {
         @apply bg-background text-foreground;
+    }
+    .font-display {
+        font-family: "Playfair Display", serif;
     }
 }
 

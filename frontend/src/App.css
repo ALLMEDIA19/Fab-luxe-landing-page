@@ -1,34 +1,45 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.luxury-page {
+    background: radial-gradient(circle at 15% 10%, rgba(212, 175, 55, 0.14), transparent 30%),
+        radial-gradient(circle at 80% 35%, rgba(6, 78, 59, 0.1), transparent 32%),
+        #fdfbf7;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.hero-image {
+    background-size: cover;
+    background-position: center;
+    animation: hero-zoom 18s ease-in-out infinite alternate;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.reveal-card {
+    animation: reveal-up 600ms ease-out both;
 }
 
-.App-link {
-    color: #61dafb;
+.sticky-cta {
+    box-shadow: 0 20px 48px rgba(6, 78, 59, 0.32);
+    transition: transform 240ms ease, background-color 240ms ease;
 }
 
-@keyframes App-logo-spin {
+.sticky-cta:hover {
+    transform: translateY(-2px);
+    background-color: rgba(4, 53, 41, 0.95);
+}
+
+@keyframes hero-zoom {
     from {
-        transform: rotate(0deg);
+        transform: scale(1);
     }
     to {
-        transform: rotate(360deg);
+        transform: scale(1.08);
+    }
+}
+
+@keyframes reveal-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

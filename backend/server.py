@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -6,7 +6,7 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -37,6 +37,38 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+
+class LeadBase(BaseModel):
+    name: str
+    phone: str
+    budget: str
+    preferred_callback_time: str
+
+
+class LeadCreate(LeadBase):
+    pass
+
+
+class LeadUpdate(BaseModel):
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    budget: Optional[str] = None
+    preferred_callback_time: Optional[str] = None
+
+
+class Lead(LeadBase):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+def parse_lead_dates(lead_doc: dict) -> dict:
+    parsed = {**lead_doc}
+    if isinstance(parsed.get("created_at"), str):
+        parsed["created_at"] = datetime.fromisoformat(parsed["created_at"])
+    return parsed
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -65,6 +97,55 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+
+@api_router.post("/leads", response_model=Lead)
+async def create_lead(input: LeadCreate):
+    lead_obj = Lead(**input.model_dump())
+    lead_doc = lead_obj.model_dump()
+    lead_doc["created_at"] = lead_doc["created_at"].isoformat()
+
+    _ = await db.leads.insert_one(lead_doc)
+    return lead_obj
+
+
+@api_router.get("/leads", response_model=List[Lead])
+async def get_leads():
+    leads = await db.leads.find({}, {"_id": 0}).sort("created_at", -1).to_list(1000)
+    return [parse_lead_dates(lead) for lead in leads]
+
+
+@api_router.get("/leads/{lead_id}", response_model=Lead)
+async def get_lead(lead_id: str):
+    lead = await db.leads.find_one({"id": lead_id}, {"_id": 0})
+    if not lead:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    return parse_lead_dates(lead)
+
+
+@api_router.put("/leads/{lead_id}", response_model=Lead)
+async def update_lead(lead_id: str, input: LeadUpdate):
+    update_data = input.model_dump(exclude_none=True)
+    if not update_data:
+        raise HTTPException(status_code=400, detail="No fields provided for update")
+
+    result = await db.leads.update_one({"id": lead_id}, {"$set": update_data})
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Lead not found")
+
+    updated = await db.leads.find_one({"id": lead_id}, {"_id": 0})
+    if not updated:
+        raise HTTPException(status_code=404, detail="Lead not found")
+    return parse_lead_dates(updated)
+
+
+@api_router.delete("/leads/{lead_id}")
+async def delete_lead(lead_id: str):
+    result = await db.leads.delete_one({"id": lead_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Lead not found")
+
+    return {"message": "Lead deleted successfully"}
 
 # Include the router in the main app
 app.include_router(api_router)
