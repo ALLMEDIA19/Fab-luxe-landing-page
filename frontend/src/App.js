@@ -437,7 +437,7 @@ export default function App() {
 
       <button
         data-testid="sticky-cta-button"
-        className="sticky-cta fixed bottom-4 right-4 z-40 hidden items-center gap-2 border border-[#D4AF37] bg-[#064E3B]/85 px-5 py-3 text-sm text-[#FDFBF7] backdrop-blur md:flex"
+        className="sticky-cta fixed bottom-5 left-5 z-[120] hidden items-center gap-2 border border-[#D4AF37] bg-[#064E3B]/90 px-5 py-3 text-sm text-[#FDFBF7] backdrop-blur md:flex"
         onClick={() => setOpen(true)}
       >
         Book Private Viewing <ChevronRight className="h-4 w-4" />
