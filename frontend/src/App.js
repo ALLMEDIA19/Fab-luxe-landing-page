@@ -6,8 +6,9 @@ import {
   Building2,
   Check,
   CheckCircle2,
-  Dumbbell,
   MapPin,
+  MessageCircle,
+  PhoneCall,
   ShieldCheck,
   Sparkles,
   Waves,
@@ -122,6 +123,22 @@ const floorTabs = [
     ],
   },
 ];
+
+const topNavLinks = [
+  { label: "Price List", href: "#price-list-section", testId: "top-nav-price-list-link" },
+  { label: "Location Map", href: "#location-map-section", testId: "top-nav-location-map-link" },
+  { label: "Floor Plan", href: "#floor-plan-section", testId: "top-nav-floor-plan-link" },
+  { label: "Amenities", href: "#amenities-section", testId: "top-nav-amenities-link" },
+];
+
+const priceListRows = [
+  { type: "3 BHK + Study + 4T", size: "2690 - 2718 sq. ft.", price: "PRICE ON REQUEST" },
+  { type: "4 BHK + Study + 5T", size: "3307 sq. ft.", price: "PRICE ON REQUEST" },
+  { type: "Premium Corner Configuration", size: "Multiple layouts available", price: "PRICE ON REQUEST" },
+];
+
+const googleMapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=Fab+Luxe+Residencies+Sector+4+Greater+Noida+West";
 
 const initialForm = {
   name: "",
@@ -285,23 +302,43 @@ export default function App() {
             </div>
           </div>
 
-          <Button
-            data-testid="header-inquire-button"
-            onClick={() => setOpen(true)}
-            className="rounded-sm border border-[#f00000] bg-[#f00000] px-3 text-xs text-white transition-transform duration-300 hover:-translate-y-0.5 hover:bg-[#c60000] sm:px-5 sm:text-sm"
+          <a
+            href="tel:+919810105007"
+            data-testid="top-call-now-button"
+            className="blink-soft inline-flex items-center gap-2 rounded-sm border border-[#f00000] bg-[#f00000] px-3 py-2 text-[11px] font-medium text-white transition-colors duration-300 hover:bg-[#c60000] sm:px-5 sm:text-sm"
           >
-            Inquire Now
-          </Button>
+            <PhoneCall className="h-4 w-4" />
+            <span className="sm:hidden">CALL NOW</span>
+            <span className="hidden sm:inline">CALL NOW AT +91 9810105007</span>
+          </a>
+        </div>
+
+        <div className="border-t border-[#f00000]/15" data-testid="top-navigation-row">
+          <nav
+            className="mx-auto flex w-full max-w-7xl items-center gap-6 overflow-x-auto whitespace-nowrap px-6 py-2 md:px-12"
+            data-testid="top-navigation-links"
+          >
+            {topNavLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                data-testid={link.testId}
+                className="text-sm text-[#8f0000] transition-colors duration-300 hover:text-[#f00000]"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </header>
 
-      <main className="pt-[86px]" data-testid="landing-main-content">
+      <main className="pt-[126px]" data-testid="landing-main-content">
         <section className="relative overflow-hidden" style={{ minHeight: "85vh" }} data-testid="hero-section">
           <div
             className="hero-image absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(90deg, rgba(30, 0, 0, 0.72) 10%, rgba(30, 0, 0, 0.42) 65%, rgba(30, 0, 0, 0.35) 100%), url('/pdf-assets/hero_clean.jpg')",
+                "linear-gradient(90deg, rgba(30, 0, 0, 0.72) 10%, rgba(30, 0, 0, 0.42) 65%, rgba(30, 0, 0, 0.35) 100%), url('/pdf-assets/hero_user_upload.png')",
             }}
             data-testid="hero-background"
           />
@@ -360,6 +397,40 @@ export default function App() {
               </p>
             </article>
           ))}
+        </section>
+
+        <section
+          id="price-list-section"
+          className="mx-auto max-w-7xl px-6 pb-20 lg:px-12"
+          data-testid="price-list-section"
+        >
+          <h2 className="font-display text-4xl text-[#1a1a1a] md:text-5xl" data-testid="price-list-heading">
+            Price List
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm text-[#474747] md:text-base" data-testid="price-list-subheading">
+            Indicative inventory structure for quick comparison. Final commercials are shared by advisory team.
+          </p>
+
+          <div className="mt-6 overflow-x-auto border border-[#f00000]/25" data-testid="price-list-table-wrapper">
+            <table className="min-w-full text-left" data-testid="price-list-table">
+              <thead className="bg-[#fff1f1] text-xs uppercase tracking-[0.16em] text-[#8f0000] md:text-sm" data-testid="price-list-table-head">
+                <tr>
+                  <th className="px-4 py-3" data-testid="price-list-header-type">Type</th>
+                  <th className="px-4 py-3" data-testid="price-list-header-size">Size</th>
+                  <th className="px-4 py-3" data-testid="price-list-header-price">Price</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white text-sm text-[#212121] md:text-base" data-testid="price-list-table-body">
+                {priceListRows.map((row) => (
+                  <tr key={row.type} className="border-t border-[#f4d7d7]" data-testid={`price-list-row-${toSlug(row.type)}`}>
+                    <td className="px-4 py-3" data-testid={`price-list-type-${toSlug(row.type)}`}>{row.type}</td>
+                    <td className="px-4 py-3" data-testid={`price-list-size-${toSlug(row.type)}`}>{row.size}</td>
+                    <td className="px-4 py-3 font-medium text-[#b00000]" data-testid={`price-list-price-${toSlug(row.type)}`}>{row.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-12" data-testid="project-trust-section">
@@ -423,7 +494,11 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pb-20 lg:grid-cols-2 lg:px-12" data-testid="wellness-and-features-section">
+        <section
+          id="amenities-section"
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 pb-20 lg:grid-cols-2 lg:px-12"
+          data-testid="wellness-and-features-section"
+        >
           <div>
             <h2 className="font-display text-4xl text-[#1a1a1a] md:text-5xl" data-testid="wellness-heading">
               Deeper Project Information for Serious Decision-Making
@@ -466,7 +541,11 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-12" data-testid="floor-plan-gallery-section">
+        <section
+          id="floor-plan-section"
+          className="mx-auto max-w-7xl px-6 pb-20 lg:px-12"
+          data-testid="floor-plan-gallery-section"
+        >
           <h2 className="font-display text-4xl text-[#1a1a1a] md:text-5xl" data-testid="floor-plan-gallery-heading">
             Floor Plans & Master Planning Gallery
           </h2>
@@ -556,7 +635,11 @@ export default function App() {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 pb-20 lg:grid-cols-2 lg:px-12" data-testid="location-investment-section">
+        <section
+          id="location-map-section"
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 pb-20 lg:grid-cols-2 lg:px-12"
+          data-testid="location-investment-section"
+        >
           <figure className="overflow-hidden border border-[#f00000]/25" data-testid="location-visual-card">
             <div className="aspect-[16/11]" data-testid="location-visual-wrap">
               <img
@@ -572,6 +655,15 @@ export default function App() {
             <h2 className="font-display text-4xl text-[#1a1a1a] md:text-5xl" data-testid="location-section-heading">
               Location & Value Appreciation Context
             </h2>
+            <a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="open-google-map-button"
+              className="mt-4 inline-flex items-center gap-2 rounded-sm border border-[#f00000] bg-white px-4 py-2 text-sm text-[#b00000] transition-colors duration-300 hover:bg-[#fff2f2]"
+            >
+              <MapPin className="h-4 w-4" /> Open Google Maps
+            </a>
             <div className="mt-6 space-y-3" data-testid="connectivity-list">
               {connectivityPoints.map((item) => (
                 <div
@@ -625,6 +717,12 @@ export default function App() {
         </section>
       </main>
 
+      <footer className="border-t border-[#f00000]/20 bg-[#fff7f7] px-6 py-5 text-center lg:px-12" data-testid="website-footer">
+        <p className="text-sm text-[#7d0000]" data-testid="partner-footer-text">
+          ATFL | Authorised Channel Partner - Forbes Global Properties
+        </p>
+      </footer>
+
       <button
         data-testid="sticky-cta-button"
         className="sticky-cta fixed bottom-5 left-5 z-[120] hidden items-center gap-2 border border-[#f00000] bg-[#f00000]/92 px-5 py-3 text-sm text-white backdrop-blur md:flex"
@@ -640,6 +738,34 @@ export default function App() {
       >
         Book Private Viewing <ArrowRight className="h-4 w-4" />
       </button>
+
+      <a
+        href="https://wa.me/919810105007"
+        target="_blank"
+        rel="noreferrer"
+        data-testid="whatsapp-floating-button"
+        className="fixed bottom-[145px] right-4 z-[125] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_16px_28px_rgba(0,0,0,0.25)] transition-transform duration-300 hover:scale-105 md:bottom-44"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageCircle className="h-6 w-6" />
+      </a>
+
+      <a
+        href="tel:+919810105007"
+        data-testid="bottom-right-call-now-button"
+        className="blink-soft fixed bottom-28 right-4 z-[124] hidden items-center gap-2 rounded-sm border border-[#f00000] bg-[#f00000] px-4 py-3 text-sm font-medium text-white shadow-[0_24px_48px_rgba(240,0,0,0.28)] transition-colors duration-300 hover:bg-[#c60000] md:inline-flex"
+      >
+        <PhoneCall className="h-4 w-4" /> CALL NOW AT +91 9810105007
+      </a>
+
+      <a
+        href="tel:+919810105007"
+        data-testid="bottom-right-call-now-mobile-button"
+        className="blink-soft fixed bottom-[86px] right-4 z-[124] inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#f00000] bg-[#f00000] text-white shadow-[0_20px_35px_rgba(240,0,0,0.28)] md:hidden"
+        aria-label="Call now at +91 9810105007"
+      >
+        <PhoneCall className="h-5 w-5" />
+      </a>
 
       <LeadFormPopup open={open} setOpen={setOpen} />
     </div>

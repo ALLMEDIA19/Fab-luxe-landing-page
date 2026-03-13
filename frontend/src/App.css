@@ -33,6 +33,10 @@
     background-color: rgba(198, 0, 0, 0.95);
 }
 
+.blink-soft {
+    animation: blink-soft 1.9s ease-in-out infinite;
+}
+
 @keyframes hero-zoom {
     from {
         transform: scale(1);
@@ -50,5 +54,17 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes blink-soft {
+    0%,
+    100% {
+        opacity: 1;
+        filter: brightness(1);
+    }
+    50% {
+        opacity: 0.72;
+        filter: brightness(1.08);
     }
 }
