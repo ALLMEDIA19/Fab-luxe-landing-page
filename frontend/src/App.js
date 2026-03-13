@@ -635,7 +635,7 @@ export default function App() {
 
       <button
         data-testid="mobile-sticky-cta-button"
-        className="fixed bottom-0 left-0 z-40 flex w-full items-center justify-center gap-2 border-t border-[#d70000] bg-[#f00000] px-4 py-3 text-sm text-white md:hidden"
+        className="fixed bottom-28 left-3 right-3 z-40 flex items-center justify-center gap-2 rounded-sm border border-[#d70000] bg-[#f00000] px-4 py-3 text-sm text-white shadow-[0_20px_40px_rgba(240,0,0,0.3)] md:hidden"
         onClick={() => setOpen(true)}
       >
         Book Private Viewing <ArrowRight className="h-4 w-4" />
