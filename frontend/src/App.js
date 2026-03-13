@@ -301,7 +301,7 @@ export default function App() {
             className="hero-image absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(90deg, rgba(30, 0, 0, 0.72) 10%, rgba(30, 0, 0, 0.42) 65%, rgba(30, 0, 0, 0.35) 100%), url('/pdf-assets/deck_p01.jpg')",
+                "linear-gradient(90deg, rgba(30, 0, 0, 0.72) 10%, rgba(30, 0, 0, 0.42) 65%, rgba(30, 0, 0, 0.35) 100%), url('/pdf-assets/hero_clean.jpg')",
             }}
             data-testid="hero-background"
           />
