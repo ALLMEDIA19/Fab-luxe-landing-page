@@ -1,137 +1,123 @@
 {
-  "identity": {
-    "name": "Fab Luxe by Forbes Global Properties",
-    "persona": "E1 - The Anti-AI Designer",
-    "tone": "Jewel & Luxury",
-    "mission": "Create a digital experience that feels like a private viewing of a masterpiece. Old Money sophistication meets modern technical precision."
-  },
-  "typography": {
-    "headings": {
-      "font_family": "Playfair Display, serif",
-      "weights": ["400", "600", "700"],
-      "usage": "All section titles, hero headlines, and major value propositions.",
-      "letter_spacing": "tracking-tight"
-    },
-    "body": {
-      "font_family": "Manrope, sans-serif",
-      "weights": ["300", "400", "500"],
-      "usage": "Paragraphs, lists, button text, and technical details.",
-      "letter_spacing": "tracking-normal"
-    },
-    "accents": {
-      "font_family": "Playfair Display, serif",
-      "style": "italic",
-      "usage": "Testimonials, 'Quiet Luxury' tagline, and decorative subheads."
-    }
-  },
-  "colors": {
-    "palette": {
-      "primary": {
-        "name": "Deep Emerald",
-        "hex": "#064E3B",
-        "tailwind": "bg-[#064E3B]",
-        "usage": "Primary buttons (hover), active states, footer background."
+  "design_system": {
+    "typography": {
+      "font_family": {
+        "heading": "Playfair Display, serif",
+        "body": "Manrope, sans-serif"
       },
-      "secondary": {
-        "name": "Forbes Gold",
-        "hex": "#D4AF37",
-        "tailwind": "text-[#D4AF37] border-[#D4AF37]",
-        "usage": "Borders, icons, thin lines, text highlights."
-      },
-      "background": {
-        "name": "Warm Cream",
-        "hex": "#FDFBF7",
-        "tailwind": "bg-[#FDFBF7]",
-        "usage": "Main page background."
-      },
-      "surface": {
-        "name": "Soft Beige",
-        "hex": "#F5F2EA",
-        "tailwind": "bg-[#F5F2EA]",
-        "usage": "Cards, form backgrounds, secondary sections."
-      },
-      "text": {
-        "primary": "#1A1A1A",
-        "secondary": "#4A4A4A",
-        "light": "#FDFBF7"
+      "scale": {
+        "h1": "text-5xl md:text-7xl font-bold tracking-tight leading-none",
+        "h2": "text-4xl md:text-5xl font-semibold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-medium",
+        "body_large": "text-lg md:text-xl leading-relaxed text-gray-600",
+        "body_default": "text-base leading-relaxed text-gray-600",
+        "caption": "text-sm tracking-widest uppercase font-semibold text-gray-400"
       }
     },
-    "rules": [
-      "No gradients on dark backgrounds.",
-      "Use 'Forbes Gold' sparingly - only for emphasis.",
-      "Text on Dark Green must be Warm Cream (#FDFBF7), never pure white."
-    ]
-  },
-  "layout_strategy": {
-    "grid_system": "The Bento Grid (Mode A)",
-    "container_width": "max-w-7xl mx-auto px-6 md:px-12",
+    "colors": {
+      "palette": {
+        "brand": {
+          "primary": "#8B0000",
+          "secondary": "#D4AF37",
+          "dark": "#1A1A1A",
+          "light": "#FDFBF7",
+          "white": "#FFFFFF"
+        },
+        "functional": {
+          "text_primary": "#1A1A1A",
+          "text_secondary": "#52525B",
+          "border": "#E4E4E7",
+          "background": "#FFFFFF",
+          "surface": "#FDFBF7"
+        }
+      },
+      "usage": {
+        "primary_button": "bg-[#8B0000] text-white hover:bg-[#600000] transition-colors duration-300",
+        "secondary_button": "border border-[#8B0000] text-[#8B0000] hover:bg-[#8B0000] hover:text-white transition-colors duration-300",
+        "background_section": "bg-white",
+        "background_alt": "bg-[#FDFBF7]"
+      }
+    },
     "spacing": {
-      "section_gap": "py-24 md:py-32",
-      "component_gap": "gap-8 md:gap-12"
+      "section_padding": "py-24 md:py-32",
+      "container_padding": "px-6 md:px-12 lg:px-24",
+      "element_gap": "gap-8"
+    },
+    "effects": {
+      "shadows": {
+        "card": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+        "hover": "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+        "popup": "shadow-2xl"
+      },
+      "radius": {
+        "card": "rounded-none",
+        "button": "rounded-none",
+        "input": "rounded-sm"
+      },
+      "glass": "backdrop-blur-md bg-white/80 border border-white/20"
     }
   },
   "components": {
-    "HeroSection": {
-      "type": "Custom",
-      "structure": "Full-screen parallax image with dark overlay (40%). Centered majestic typography. 'Inquire Now' button with gold border.",
-      "animation": "Slow zoom on background image. Text fade-in stagger."
+    "Header": {
+      "path": "/app/frontend/src/components/Header.js",
+      "description": "Sticky header with FAB LUXE RESIDENCIES logo and Red CTA.",
+      "styles": "fixed top-0 w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-gray-100"
     },
-    "LeadFormPopup": {
-      "type": "Shadcn Dialog",
-      "customization": "Remove default radius. Use sharp corners or 2px radius. Gold border on focus. Background: Warm Cream.",
-      "fields": ["Name", "Phone", "Budget", "Preferred Callback Time"],
-      "success_state": "Show elegant success message with checkmark icon, no redirect."
+    "Hero": {
+      "path": "/app/frontend/src/components/Hero.js",
+      "description": "Full screen cinematic hero with parallax image and luxury typography.",
+      "image_url": "https://images.unsplash.com/photo-1676287734314-b7616c3c5e5a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBhcGFydG1lbnQlMjBidWlsZGluZyUyMGV4dGVyaW9yJTIwdHdpbGlnaHR8ZW58MHx8fHwxNzcyOTQ2Nzk2fDA&ixlib=rb-4.1.0&q=85",
+      "cta_text": "Enquire Now"
     },
-    "PropertyHighlights": {
-      "type": "Bento Grid",
-      "items": [
-        {"title": "Forbes Branded", "desc": "India's first Forbes Global Properties project.", "col_span": "col-span-12 md:col-span-8"},
-        {"title": "Sky Lounge", "desc": "75,000 sq.ft of curated luxury.", "col_span": "col-span-12 md:col-span-4"},
-        {"title": "Spacious Living", "desc": "3.5 & 4.5 BHK starting from 2690 sq.ft.", "col_span": "col-span-12 md:col-span-4"},
-        {"title": "Price", "desc": "Starts ₹2.97 Cr.", "col_span": "col-span-12 md:col-span-8"}
+    "TrustStack": {
+      "path": "/app/frontend/src/components/TrustStack.js",
+      "description": "Minimalist strip showing RERA ID, Bank Partners, and Awards.",
+      "styles": "bg-[#FDFBF7] py-12 border-y border-gray-100"
+    },
+    "ProjectSnapshot": {
+      "path": "/app/frontend/src/components/ProjectSnapshot.js",
+      "description": "Grid of key numbers (Acres, Towers, Units).",
+      "data": [
+        {"label": "Acres", "value": "4.5"},
+        {"label": "Towers", "value": "3"},
+        {"label": "Stories", "value": "45"},
+        {"label": "Starting", "value": "2.97 Cr"}
       ]
     },
-    "StickyCTA": {
-      "type": "Custom",
-      "position": "Bottom right (desktop), Fixed bottom bar (mobile)",
-      "style": "Glassmorphism with Gold border.",
-      "text": "Book Private Viewing"
+    "Amenities": {
+      "path": "/app/frontend/src/components/Amenities.js",
+      "description": "Bento Grid layout showcasing lifestyle amenities.",
+      "images": {
+        "pool": "https://images.unsplash.com/photo-1729605411960-4195875873c2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwxfHxpbmZpbml0eSUyMHBvb2wlMjBsdXh1cnklMjByb29mdG9wfGVufDB8fHx8MTc3Mjk0Njc5OHww&ixlib=rb-4.1.0&q=85",
+        "gym": "https://images.unsplash.com/photo-1757924284732-4189190321cf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTZ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBneW0lMjBsdXh1cnklMjBjb25kb3xlbnwwfHx8fDE3NzI5NDY3OTl8MA&ixlib=rb-4.1.0&q=85",
+        "lounge": "https://images.unsplash.com/photo-1682184805271-11671b7ecf4c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBsaXZpbmclMjByb29tJTIwaW50ZXJpb3IlMjBtb2Rlcm4lMjBiZWlnZSUyMHJlZHxlbnwwfHx8fDE3NzI5NDY3OTd8MA&ixlib=rb-4.1.0&q=85"
+      }
+    },
+    "FloorPlans": {
+      "path": "/app/frontend/src/components/FloorPlans.js",
+      "description": "Tabs component (2BHK, 3BHK, Penthouse) with plan image and specs list.",
+      "placeholder_image": "https://images.unsplash.com/photo-1721244654346-9be0c0129e36?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwzfHwyYmhrJTIwYXBhcnRtZW50JTIwZmxvb3IlMjBwbGFuJTIwc2tldGNofGVufDB8fHx8MTc3Mjk0NjgwMHww&ixlib=rb-4.1.0&q=85"
+    },
+    "LeadPopup": {
+      "path": "/app/frontend/src/components/LeadPopup.js",
+      "description": "Dialog component that appears after 5s or on CTA click. Uses Shadcn Dialog + Form.",
+      "fields": ["Name", "Phone", "Email", "Configuration"]
     }
   },
-  "image_urls": {
-    "hero_bg": "https://images.unsplash.com/photo-1745091722150-dc7aaf6eeb21?crop=entropy&cs=srgb&fm=jpg&q=85",
-    "interior_living": "https://images.unsplash.com/photo-1653652445848-ddc5a1c6472c?crop=entropy&cs=srgb&fm=jpg&q=85",
-    "amenity_pool": "https://images.unsplash.com/photo-1758448756167-88dc934c58e4?crop=entropy&cs=srgb&fm=jpg&q=85",
-    "amenity_theatre": "https://images.unsplash.com/photo-1517604931442-71053648eca9?crop=entropy&cs=srgb&fm=jpg&q=85",
-    "exterior_twilight": "https://images.unsplash.com/photo-1676287734314-b7616c3c5e5a?crop=entropy&cs=srgb&fm=jpg&q=85"
-  },
-  "content_data": {
-    "project_name": "Fab Luxe by Forbes Global Properties",
-    "location": "Noida Extension (Techzone 7), Greater Noida West",
-    "price": "Starts at ₹2.97 Cr",
-    "configurations": "3.5 BHK & 4.5 BHK",
-    "possession": "March 2028",
-    "usps": [
-      "India's First Forbes Branded Residential Project",
-      "11ft Ceiling Height",
-      "3 Apartments per Floor",
-      "All Corner Apartments",
-      "Dedicated EV Charging",
-      "75,000 sq ft Club Amenities"
-    ]
-  },
   "instructions_to_main_agent": [
-    "Install 'lucide-react' for icons.",
-    "Use 'Playfair Display' from Google Fonts via import in index.css.",
-    "Use 'Manrope' from Google Fonts.",
-    "Ensure the Lead Form sends data to POST /api/leads (mock it if backend not ready, but user said backend exists).",
-    "Add 'data-testid' to the submit button: 'lead-form-submit'.",
-    "Ensure mobile responsiveness: Text should not be too small (<16px) or too large (>40px) on mobile."
+    "CRITICAL: The user mentioned a PDF, but it was not found in the file system. Use the provided stock image URLs as high-quality placeholders. Add a comment in the code: 'TODO: Replace with actual PDF assets when available'.",
+    "THEME: Strictly use the Red (#8B0000) and White theme. Do not use the old Green/Gold theme from the CSS file.",
+    "LAYOUT: Implement the 'Bento Grid' for the Amenities section as per E1's spacing strategy (Mode A).",
+    "INTERACTION: Ensure the 'Enquire Now' button triggers the LeadPopup.",
+    "TESTING: Add 'data-testid' to all interactive elements (buttons, inputs, tabs).",
+    "ANIMATION: Use framer-motion for entrance animations (fade-up) on all sections.",
+    "Use 'lucide-react' for icons."
   ],
   "universal_guidelines": [
-    "Do not use gradients on dark colors.",
-    "Use layered shadows.",
-    "Every interaction needs micro-animations.",
-    "Use 'sonner' for toasts."
+    "Do not use generic centered layouts. Use asymmetry.",
+    "Use 2-3x more spacing (p-24, p-32) than standard.",
+    "Typography: Playfair Display for Headings, Manrope for Body.",
+    "Never use 'Inter' for headings.",
+    "Ensure high contrast (WCAG AA) for the Red/White theme."
   ]
 }
