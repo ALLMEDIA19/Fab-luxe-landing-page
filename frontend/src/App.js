@@ -320,7 +320,7 @@ export default function App() {
               A Signature Redefined: FAB LUXE RESIDENCIES in Greater Noida West
             </h1>
             <p
-              className="mt-6 max-w-3xl text-sm leading-relaxed text-white/92 md:text-lg"
+              className="mt-6 max-w-3xl text-sm leading-relaxed text-white md:text-lg"
               data-testid="hero-description"
             >
               Supreme Court monitored. NBCC executed. Globally positioned with Forbes association. Crafted for families that value
