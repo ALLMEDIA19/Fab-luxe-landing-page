@@ -721,6 +721,9 @@ export default function App() {
         <p className="text-sm text-[#7d0000]" data-testid="partner-footer-text">
           ATFL | Authorised Channel Partner - Forbes Global Properties
         </p>
+        <p className="mt-1 text-xs text-[#9a3131]" data-testid="copyright-footer-text">
+          All Rights Reserved By All Media &amp; Production 2026
+        </p>
       </footer>
 
       <button
